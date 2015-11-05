@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+{% if user.is_authenticated %}
 <div class="jumbotron">
-  <h1>Welcome to Destination Recommendation!</h1>
-  <p>The place to come when you're feeling lost</p>
+  <h1>Welcome back!</h1>
 </div>
+{% else %}
+<div class="jumbotron">
+  <h1>Welcome to Destination Recommendation</h1>
+  <p>Get a recommendation for where to go in your unfamiliar your destination!</p>
+  <p><a class="btn btn-lg btn-primary" href="{% url 'registration_register' %}">Sign up</a></p>
+</div>
+{% endif %}
 {% endblock %}
