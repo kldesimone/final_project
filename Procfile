@@ -1,1 +1,1 @@
-web: gunicorn qandu_app.wsgi --log-file -
+web: gunicorn final_project.wsgi --log-file -
