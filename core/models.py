@@ -9,4 +9,4 @@ class Destination(models.Model):
   user = models.ForeignKey(User)
 
   def __unicode__(self):
-    return self.title
+    return self.destination

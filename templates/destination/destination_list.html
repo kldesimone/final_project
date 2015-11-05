@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for destination in object_list %}
+<div class="panel">
+    <h3>{{ destination.destination }}</h3>
+    <p>Added by {{ destination.user.username }} on {{ destination.created_at}}</p>
+</div>
+{% endfor %}
+{% endblock %}
