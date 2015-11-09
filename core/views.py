@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, ListView, DetailView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
 from django.core.urlresolvers import reverse_lazy
 from .models import *
 
@@ -24,3 +24,8 @@ class DestinationListView(ListView):
 class DestinationDetailView(DetailView):
     model = Destination
     template_name = "destination/destination_detail.html"
+
+class DestinationUpdateView(UpdateView):
+    model = Destination
+    template_name = 'destination/destination_form.html'
+    fields = ['destination', 'point_of_interest']

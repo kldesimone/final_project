@@ -3,4 +3,7 @@
 <h1>{{ destination.destination }}</h1>
 <p>{{ destination.point_of_interest }}</p>
 <p>Asked by {{ destination.user.username }} on {{ destination.created_at }}</p>
+{% if question.user == user %}
+<p><a href="{% url 'destination_update' pk=destination.id %}">Edit destination</a></p>
+{% endif %}
 {% endblock %}
