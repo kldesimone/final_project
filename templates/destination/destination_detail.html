@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ destination.destination }}</h1>
+<p>{{ destination.point_of_interest }}</p>
+<p>Asked by {{ destination.user.username }} on {{ destination.created_at }}</p>
+{% endblock %}

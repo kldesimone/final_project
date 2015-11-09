@@ -2,7 +2,7 @@
 {% block content %}
 {% for destination in object_list %}
 <div class="panel">
-    <h3>{{ destination.destination }}</h3>
+    <h3><a href="{{ destination.get_absolute_url }}">{{ destination.destination }}</a></h3>>
     <p>Added by {{ destination.user.username }} on {{ destination.created_at}}</p>
 </div>
 {% endfor %}
