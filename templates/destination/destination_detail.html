@@ -7,4 +7,5 @@
 <p><a href="{% url 'destination_update' pk=destination.id %}">Edit destination</a></p>
 <p><a href="{% url 'destination_delete' pk=destination.id %}">Delete destination</a></p>
 {% endif %}
+<p><a href="{% url 'recommendation_create' pk=destination.id %}">Add recommendation</a></p>
 {% endblock %}
