@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'destination/$', DestinationListView.as_view(), name='destination_list'),
     url(r'^destination/(?P<pk>\d+)/$', DestinationDetailView.as_view(), name='destination_detail'),
     url(r'^destination/update/(?P<pk>\d+)/$', DestinationUpdateView.as_view(), name='destination_update'),
+    url(r'^destination/delete/(?P<pk>\d+)/$', DestinationDeleteView.as_view(), name='destination_delete'),
 )
