@@ -7,5 +7,14 @@
 <p><a href="{% url 'destination_update' pk=destination.id %}">Edit destination</a></p>
 <p><a href="{% url 'destination_delete' pk=destination.id %}">Delete destination</a></p>
 {% endif %}
+{% if recommendations.count > 0 %}
+<h3>{{ recommendations.count }} Recommendation{{ recommendations.count|pluralize }}:</h3>
+{% endif %}
+{% for recommendation in recommendations %}
+<div class="panel">
+<p>{{ recommendation.recommendation }}</p>
+<p>Recommended by {{ recommendation.user.username }} on {{ recommendation.created_at }}</p>
+</div>
+{% endfor %}
 <p><a href="{% url 'recommendation_create' pk=destination.id %}">Add recommendation</a></p>
 {% endblock %}

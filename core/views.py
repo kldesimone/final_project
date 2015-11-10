@@ -25,6 +25,13 @@ class DestinationDetailView(DetailView):
     model = Destination
     template_name = "destination/destination_detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(DestinationDetailView, self).get_context_data(**kwargs)
+        destination = Destination.objects.get(id=self.kwargs['pk'])
+        recommendations = Recommendation.objects.filter(destination=destination)
+        context['recommendations'] = recommendations
+        return context
+
 class DestinationUpdateView(UpdateView):
     model = Destination
     template_name = 'destination/destination_form.html'
