@@ -2,7 +2,7 @@
 {% block content %}
 <h1>{{ destination.destination }}</h1>
 <p>{{ destination.point_of_interest }}</p>
-<p>Added by {{ destination.user.username }} on {{ destination.created_at }}</p>
+<p>Added by <a href="{% url 'user_detail' slug=destination.user.username %}">{{ destination.user.username }}</a> on {{ destination.created_at }}</p>
 {% if destination.user == user %}
 <p><a href="{% url 'destination_update' pk=destination.id %}">Edit destination</a></p>
 <p><a href="{% url 'destination_delete' pk=destination.id %}">Delete destination</a></p>
@@ -17,7 +17,7 @@
 <p><a href="{% url 'recommendation_update' destination_pk=destination.id recommendation_pk=recommendation.id %}">Edit  recommendation</a></p>
 <p><a href="{% url 'recommendation_delete' destination_pk=destination.id recommendation_pk=recommendation.id %}">Delete recommendation</a></p>
 {% endif %}
-<p>Recommended by {{ recommendation.user.username }} on {{ recommendation.created_at }}</p>
+<p>Recommended by <a href="{% url 'user_detail' slug=recommendation.user.username %}">{{ recommendation.user.username }}</a> on {{ recommendation.created_at }} ({{ recommendation.vote_set.all.count }} Vote{{ answer.vote_set.all.count|pluralize }})</p>
 <p>{{ recommendation.vote_set.all.count }} Vote{{ recommendation.vote_set.all.count|pluralize }}</p>
 <form method="post" action="{% url 'vote' %}">
     {% csrf_token %}
