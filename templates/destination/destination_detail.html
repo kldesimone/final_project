@@ -2,8 +2,8 @@
 {% block content %}
 <h1>{{ destination.destination }}</h1>
 <p>{{ destination.point_of_interest }}</p>
-<p>Asked by {{ destination.user.username }} on {{ destination.created_at }}</p>
-{% if question.user == user %}
+<p>Added by {{ destination.user.username }} on {{ destination.created_at }}</p>
+{% if destination.user == user %}
 <p><a href="{% url 'destination_update' pk=destination.id %}">Edit destination</a></p>
 <p><a href="{% url 'destination_delete' pk=destination.id %}">Delete destination</a></p>
 {% endif %}
@@ -18,6 +18,14 @@
 <p><a href="{% url 'recommendation_delete' destination_pk=destination.id recommendation_pk=recommendation.id %}">Delete recommendation</a></p>
 {% endif %}
 <p>Recommended by {{ recommendation.user.username }} on {{ recommendation.created_at }}</p>
+<p>{{ recommendation.vote_set.all.count }} Vote{{ recommendation.vote_set.all.count|pluralize }}</p>
+<form method="post" action="{% url 'vote' %}">
+    {% csrf_token %}
+    <input type="hidden" name="destination" value="{{ destination.id }}" />
+    <input type="hidden" name="recommendation" value="{{ recommendation.id }}" />
+    <input type="hidden" name="user" value="{{ user.id }}" />
+    <button>+</button>
+</form>
 </div>
 {% endfor %}
 {% if not user_recommendations %}
