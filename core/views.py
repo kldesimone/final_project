@@ -31,6 +31,8 @@ class DestinationDetailView(DetailView):
         destination = Destination.objects.get(id=self.kwargs['pk'])
         recommendations = Recommendation.objects.filter(destination=destination)
         context['recommendations'] = recommendations
+        user_recommendations = Recommendation.objects.filter(destination=destination, user=self.request.user)
+        context['user_recommendations'] = user_recommendations
         return context
 
 class DestinationUpdateView(UpdateView):
@@ -64,6 +66,9 @@ class RecommendationCreateView(CreateView):
         return self.object.destination.get_absolute_url()
 
     def form_valid(self, form):
+        destination = Destination.objects.get(id=self.kwargs['pk'])
+        if Recommendation.objects.filter(destination=destination, user=self.request.user).exists():
+          raise PermissionDenied()
         form.instance.user = self.request.user
         form.instance.destination = Destination.objects.get(id=self.kwargs['pk'])
         return super(RecommendationCreateView, self).form_valid(form)
@@ -90,7 +95,7 @@ class RecommendationDeleteView(DeleteView):
 
     def get_success_url(self):
         return self.object.destination.get_absolute_url()
-      
+
     def get_object(self, *args, **kwargs):
       object = super(RecommendationDeleteView, self).get_object(*args, **kwargs)
       if object.user != self.request.user:

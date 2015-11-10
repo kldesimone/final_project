@@ -20,5 +20,7 @@
 <p>Recommended by {{ recommendation.user.username }} on {{ recommendation.created_at }}</p>
 </div>
 {% endfor %}
+{% if not user_recommendations %}
 <p><a href="{% url 'recommendation_create' pk=destination.id %}">Add recommendation</a></p>
+{% endif %}
 {% endblock %}
