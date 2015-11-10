@@ -116,3 +116,9 @@ class VoteFormView(FormView):
       else:
          prev_votes[0].delete()
       return redirect(reverse('destination_detail', args=[form.data["destination"]]))
+
+class UserDetailView(DetailView):
+  model = User
+  slug_field = 'username'
+  template_name = 'user/user_detail.html'
+  context_object_name = 'user_in_view'
