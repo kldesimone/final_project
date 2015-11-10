@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+from django.core.exceptions import PermissionDenied
 from .models import *
 
 # Create your views here.
@@ -37,10 +38,22 @@ class DestinationUpdateView(UpdateView):
     template_name = 'destination/destination_form.html'
     fields = ['destination', 'point_of_interest']
 
+    def get_object(self, *args, **kwargs):
+        object = super(DestinationUpdateView, self).get_object(*args, **kwargs)
+        if object.user != self.request.user:
+           raise PermissionDenied()
+        return object
+
 class DestinationDeleteView(DeleteView):
     model = Destination
     template_name = 'destination/destination_confirm_delete.html'
     success_url = reverse_lazy('destination_list')
+
+    def get_object(self, *args, **kwargs):
+        object = super(DestinationDeleteView, self).get_object(*args, **kwargs)
+        if object.user != self.request.user:
+           raise PermissionDenied()
+        return object
 
 class RecommendationCreateView(CreateView):
     model = Recommendation
@@ -63,11 +76,23 @@ class RecommendationUpdateView(UpdateView):
 
     def get_success_url(self):
         return self.object.destination.get_absolute_url()
-      
+
+    def get_object(self, *args, **kwargs):
+      object = super(RecommendationUpdateView, self).get_object(*args, **kwargs)
+      if object.user != self.request.user:
+         raise PermissionDenied()
+      return object
+
 class RecommendationDeleteView(DeleteView):
     model = Recommendation
     pk_url_kwarg = 'recommendation_pk'
     template_name = 'recommendation/recommendation_confirm_delete.html'
-    
+
     def get_success_url(self):
         return self.object.destination.get_absolute_url()
+      
+    def get_object(self, *args, **kwargs):
+      object = super(RecommendationDeleteView, self).get_object(*args, **kwargs)
+      if object.user != self.request.user:
+         raise PermissionDenied()
+      return object
