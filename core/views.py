@@ -60,6 +60,14 @@ class RecommendationUpdateView(UpdateView):
     pk_url_kwarg = 'recommendation_pk'
     template_name = 'recommendation/recommendation_form.html'
     fields = ['recommendation']
+
+    def get_success_url(self):
+        return self.object.destination.get_absolute_url()
+      
+class RecommendationDeleteView(DeleteView):
+    model = Recommendation
+    pk_url_kwarg = 'recommendation_pk'
+    template_name = 'recommendation/recommendation_confirm_delete.html'
     
     def get_success_url(self):
         return self.object.destination.get_absolute_url()

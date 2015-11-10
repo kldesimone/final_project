@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     url(r'^destination/delete/(?P<pk>\d+)/$', DestinationDeleteView.as_view(), name='destination_delete'),
     url(r'^destination/(?P<pk>\d+)/recommendation/create/$', RecommendationCreateView.as_view(), name='recommendation_create'),
     url(r'^destination/(?P<destination_pk>\d+)/recommendation/update/(?P<recommendation_pk>\d+)/$', RecommendationUpdateView.as_view(), name='recommendation_update'),
+    url(r'^destination/(?P<destination_pk>\d+)/recommendation/delete/(?P<recommendation_pk>\d+)/$', RecommendationDeleteView.as_view(), name='recommendation_delete'),
 )

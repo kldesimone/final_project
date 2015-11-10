@@ -15,6 +15,7 @@
 <p>{{ recommendation.recommendation }}</p>
 {%if recommendation.user == user %}
 <p><a href="{% url 'recommendation_update' destination_pk=destination.id recommendation_pk=recommendation.id %}">Edit  recommendation</a></p>
+<p><a href="{% url 'recommendation_delete' destination_pk=destination.id recommendation_pk=recommendation.id %}">Delete recommendation</a></p>
 {% endif %}
 <p>Recommended by {{ recommendation.user.username }} on {{ recommendation.created_at }}</p>
 </div>
