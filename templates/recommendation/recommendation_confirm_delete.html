@@ -3,6 +3,6 @@
 <p class="lead">Are you sure you want to delete "{{ recommendation.recommendation }}"?</p>
 <form method="post" action="">
     {% csrf_token %}
-    <button type="submit" class="btn btn-primary">Delete</button>
+    <button type="submit" class="btn btn-success">Delete</button>
 </form>
 {% endblock %}

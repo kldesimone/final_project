@@ -1,14 +1,84 @@
 {% extends "base.html" %}
 {% block content %}
 {% if user.is_authenticated %}
-<div class="jumbotron">
+<style>
+.jumbotron {
+    background-color: #009999; /* Blue */
+    color: #ffffff;
+}
+</style>
+<div class="jumbotron text-center">
   <h1>Welcome back!</h1>
 </div>
+<style>
+.bg-green {
+    background-color: #ace699;
+}
+</style>
+<style>
+  .logo {
+    font-size: 200px;
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+  }
+</style>
+
+<div class="container-fluid bg-green">
+  <div class="row">
+    <div class="col-sm-4">
+      <span class="glyphicon glyphicon-globe logo"></span>
+    </div>
+    <div class="col-sm-8">
+      <h2>Keep exploring!</h2>
+      <h4>Add destinations!</h4>
+      <h4>Give recommendations!</h4>
+    </div>
+  </div>
+</div>
 {% else %}
-<div class="jumbotron">
+<style>
+.jumbotron {
+    background-color: #009999; /* Blue */
+    color: #ffffff;
+}
+</style>
+<div class="jumbotron text-center">
   <h1>Welcome to Destination Recommendation</h1>
   <p>Get a recommendation for where to go in your unfamiliar destination!</p>
-  <p><a class="btn btn-lg btn-primary" href="{% url 'registration_register' %}">Sign up</a></p>
+  <p><a class="btn btn-lg btn-success" href="{% url 'registration_register' %}">Sign up</a></p>
+</div>
+<style>
+.bg-green {
+    background-color: #ace699;
+}
+</style>
+<style>
+  .logo {
+    font-size: 200px;
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+  }
+</style>
+
+<div class="container-fluid bg-green">
+  <div class="row">
+    <div class="col-sm-4">
+      <span class="glyphicon glyphicon-globe logo"></span>
+    </div>
+    <div class="col-sm-8">
+      <h2>Learn more about us!</h2>
+      <h4><strong>What we do:</strong> Bla bla..</h4>
+      <p><strong>How we do it:</strong> Bla bla..</p>
+    </div>
+  </div>
 </div>
 {% endif %}
 {% endblock %}

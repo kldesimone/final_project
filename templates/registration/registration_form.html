@@ -6,7 +6,7 @@
         <form action="" method="post">
             {% csrf_token %}
             {% bootstrap_form form %}
-            <button type="submit" class="btn btn-primary">Sign up</button>
+            <button type="submit" class="btn btn-success">Sign up</button>
         </form>
         <p></p>
         <p>Already signed up? <a href="{% url 'django.contrib.auth.views.login'

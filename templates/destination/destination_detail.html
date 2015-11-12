@@ -21,9 +21,8 @@
 <form method="post" action="{% url 'vote' %}">
     <span class="badge">{{ recommendation.vote_set.all.count }} Vote{{ recommendation.vote_set.all.count|pluralize }}</span>
     {% csrf_token %}
-    <input type="hidden" name="recommendation" value="{{ answer.id }}" />
+    <input type="hidden" name="recommendation" value="{{ recommendation.id }}" />
     <input type="hidden" name="destination" value="{{ destination.id }}" />
-    <input type="hidden" name="user" value="{{ user.id }}" />
     {% if recommendation in user_votes %}
         <button class="btn btn-link">
           <span class="glyphicon glyphicon-thumbs-down"></span>
