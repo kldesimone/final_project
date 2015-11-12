@@ -146,3 +146,8 @@ class UserUpdateView(UpdateView):
       if object != self.request.user:
         raise PermissionDenied()
       return object
+
+class SearchDestinationListView(DestinationListView):
+  def get_queryset(self):
+      incoming_query_string = self.request.GET.get('query','')
+      return Destination.objects.filter(destination__icontains=incoming_query_string)

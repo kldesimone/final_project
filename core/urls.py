@@ -17,4 +17,5 @@ urlpatterns = patterns('',
     url(r'^vote/$', login_required(VoteFormView.as_view()), name='vote'),
    url(r'^user/(?P<slug>\w+)/$', login_required(UserDetailView.as_view()), name='user_detail'),
   url(r'^user/update/(?P<slug>\w+)/$', login_required(UserUpdateView.as_view()), name='user_update'),
+   url(r'^search/$', login_required(SearchDestinationListView.as_view()), name='search'),
 )
