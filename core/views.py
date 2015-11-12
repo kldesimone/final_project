@@ -22,6 +22,7 @@ class DestinationCreateView(CreateView):
 class DestinationListView(ListView):
     model = Destination
     template_name = "destination/destination_list.html"
+    paginate_by = 5
 
 class DestinationDetailView(DetailView):
     model = Destination
