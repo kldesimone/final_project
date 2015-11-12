@@ -17,14 +17,22 @@
 <p><a href="{% url 'recommendation_update' destination_pk=destination.id recommendation_pk=recommendation.id %}">Edit  recommendation</a></p>
 <p><a href="{% url 'recommendation_delete' destination_pk=destination.id recommendation_pk=recommendation.id %}">Delete recommendation</a></p>
 {% endif %}
-<p>Recommended by <a href="{% url 'user_detail' slug=recommendation.user.username %}">{{ recommendation.user.username }}</a> on {{ recommendation.created_at }} ({{ recommendation.vote_set.all.count }} Vote{{ answer.vote_set.all.count|pluralize }})</p>
-<p>{{ recommendation.vote_set.all.count }} Vote{{ recommendation.vote_set.all.count|pluralize }}</p>
+<p>Recommendated by <a href="{% url 'user_detail' slug=recommendation.user.username %}">{{ recommendation.user.username }}</a> on {{ recommendation.created_at }}</p>
 <form method="post" action="{% url 'vote' %}">
+    <span class="badge">{{ recommendation.vote_set.all.count }} Vote{{ recommendation.vote_set.all.count|pluralize }}</span>
     {% csrf_token %}
+    <input type="hidden" name="recommendation" value="{{ answer.id }}" />
     <input type="hidden" name="destination" value="{{ destination.id }}" />
-    <input type="hidden" name="recommendation" value="{{ recommendation.id }}" />
     <input type="hidden" name="user" value="{{ user.id }}" />
-    <button>+</button>
+    {% if recommendation in user_votes %}
+        <button class="btn btn-link">
+          <span class="glyphicon glyphicon-thumbs-down"></span>
+        </button>
+    {% else %}
+        <button class="btn btn-link">
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+        </button>
+    {% endif %}
 </form>
 </div>
 {% endfor %}

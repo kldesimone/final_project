@@ -35,6 +35,8 @@ class DestinationDetailView(DetailView):
         context['recommendations'] = recommendations
         user_recommendations = Recommendation.objects.filter(destination=destination, user=self.request.user)
         context['user_recommendations'] = user_recommendations
+        user_votes = Recommendation.objects.filter(vote__user=self.request.user)
+        context['user_votes'] = user_votes
         return context
 
 class DestinationUpdateView(UpdateView):
