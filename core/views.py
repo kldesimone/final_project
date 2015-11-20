@@ -64,7 +64,7 @@ class DestinationDeleteView(DeleteView):
 class RecommendationCreateView(CreateView):
     model = Recommendation
     template_name = "recommendation/recommendation_form.html"
-    fields = ['recommendation']
+    fields = ['recommendation', 'location', 'image_file']
 
     def get_success_url(self):
         return self.object.destination.get_absolute_url()
@@ -81,7 +81,7 @@ class RecommendationUpdateView(UpdateView):
     model = Recommendation
     pk_url_kwarg = 'recommendation_pk'
     template_name = 'recommendation/recommendation_form.html'
-    fields = ['recommendation']
+    fields = ['recommendation', 'location', 'image_file']
 
     def get_success_url(self):
         return self.object.destination.get_absolute_url()

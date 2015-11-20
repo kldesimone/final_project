@@ -102,7 +102,7 @@ else:
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 
 USE_I18N = True
 
@@ -120,3 +120,5 @@ STATIC_ROOT = 'staticfiles'
 LOGIN_URL = '/user/login'
 LOGIN_REDIRECT_URL ='/destination/'
 SITE_ID = 1
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_STORAGE_BUCKET_NAME = 'destinationrecommendation'
