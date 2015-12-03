@@ -2,7 +2,6 @@
 {% block content %}
 <h1>{{ destination.destination }}</h1>
 <p>{{ destination.point_of_interest }}</p>
-<p>{% if recommendation.image_file %}<img src="{{ recommendation.image_file.url }}" />{% endif %}</p>
 <p>Added by <a href="{% url 'user_detail' slug=destination.user.username %}">{{ destination.user.username }}</a> on {{ destination.created_at }}</p>
 {% if destination.user == user %}
 <p><a href="{% url 'destination_update' pk=destination.id %}">Edit destination</a></p>
@@ -21,7 +20,7 @@
 <div class="container bg-light">
 <p>{{ recommendation.recommendation }}</p>
 <p>{{ recommendation.location }}</p>
-<p>{% if recommendation.image_file %}<img src="{{ recommendation.image_file.url }}" />{% endif %}</p>
+<p>{% if recommendation.image_file %}<img width="350px" src="{{ recommendation.image_file.url }}" />{% endif %}</p>
 {% if recommendation.user == user %}
 <p><a href="{% url 'recommendation_update' destination_pk=destination.id recommendation_pk=recommendation.id %}">Edit  recommendation</a> or <a href="{% url 'recommendation_delete' destination_pk=destination.id recommendation_pk=recommendation.id %}">Delete recommendation</a></p>
 {% endif %}
